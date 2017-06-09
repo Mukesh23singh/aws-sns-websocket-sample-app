@@ -4,7 +4,7 @@ var url = require('url');
 var WebSocket = require('ws');
 var app = express();
 var server = http.createServer(app);
-var wss = new WebSocket.Server({ server: server, port: process.env.PORT || 5000});
+var wss = new WebSocket.Server({ server: server});
 console.log(JSON.stringify(wss))
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());

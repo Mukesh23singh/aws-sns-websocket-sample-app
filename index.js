@@ -14,7 +14,7 @@ app.use(function (req, res, next) {
   return next();
 });
 
-wss.on('connection', function connection(ws, req) {
+wss.on('getConnections', function connection(ws, req) {
   // You might use location.query.access_token to authenticate or share sessions
   // or req.headers.cookie (see http://stackoverflow.com/a/16395220/151312)
 

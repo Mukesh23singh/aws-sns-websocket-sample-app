@@ -9,7 +9,7 @@ app.use(function (req, res, next) {
 });
 
 app.get('/', function(req, res, next){
-  res.sendfile(__dirname + '/public/index.html');
+
 });
 
 app.post('/', function(req, res, next){

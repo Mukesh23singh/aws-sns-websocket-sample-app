@@ -1,7 +1,7 @@
 var express = require('express');
 var http = require('http');
 var url = require('url');
-var WebSocket = require('ws');
+var WebSocket = require('ws').server;
 var app = express();
 var server = http.createServer(app);
 var wss = new WebSocket.Server({ server: server});
@@ -14,7 +14,7 @@ app.use(function (req, res, next) {
   return next();
 });
 
-wss.on('getConnections', function connection(ws, req) {
+wss.on('connections', function connection(ws, req) {
   // You might use location.query.access_token to authenticate or share sessions
   // or req.headers.cookie (see http://stackoverflow.com/a/16395220/151312)
 

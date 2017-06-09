@@ -18,7 +18,7 @@
     </style>
 
     <script>
-      var host = location.origin.replace(/^https/, 'ws')
+      var host = location.origin.replace(/^https/, 'wss')
       console.log(host);
       var ws = new WebSocket(host);
       ws.onmessage = function (event) {

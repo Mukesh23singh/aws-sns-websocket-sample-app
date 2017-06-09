@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var expressWs = require('express-ws')(app);
-
+app.use(express.static('public'));
 app.use(function (req, res, next) {
   console.log('middleware');
   req.testing = 'testing';

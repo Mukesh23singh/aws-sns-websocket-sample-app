@@ -1,7 +1,7 @@
 var express = require('express');
 var http = require('http');
 var url = require('url');
-var WebSocket = require('ws').server;
+var WebSocket = require('ws');
 var app = express();
 var server = http.createServer(app);
 var wss = new WebSocket.Server({ server: server});

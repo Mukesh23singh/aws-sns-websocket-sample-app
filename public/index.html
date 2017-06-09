@@ -19,7 +19,7 @@
 
     <script>
       var host = location.origin.replace(/^http/, 'ws')
-      var ws = new WebSocket(host);
+      var ws = new WebSocket("https://shrouded-dawn-79681.herokuapp.com:1337");
       ws.onmessage = function (event) {
         var li = document.createElement('li');
         li.innerHTML = event.data;

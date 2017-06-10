@@ -23,6 +23,8 @@ wss.on('connections', function connection(ws, req) {
   });
 
   wss = ws;
+
+  wss.send('connected');
   console.log('connected')
 });
 

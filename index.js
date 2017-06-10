@@ -1,30 +1,30 @@
-var express = require('express');
-var http = require('http');
-var url = require('url');
-var WebSocket = require('ws');
-var app = express();
-var server = http.createServer(app);
-var wss = new WebSocket.Server({ server: server});
-console.log(JSON.stringify(wss))
+var WebSocketServer = require("ws").Server
+var http = require("http")
+var express = require("express")
+var app = express()
+var port = process.env.PORT || 5000
+
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(express.static('public'));
+
+var server = http.createServer(app)
+server.listen(port)
 app.use(function (req, res, next) {
   console.log('middleware');
   return next();
 });
+console.log("http server listening on %d", port);
+var wss = new WebSocketServer({server: server})
+console.log("websocket server created")
 
-wss.on('connections', function connection(ws, req) {
-  // You might use location.query.access_token to authenticate or share sessions
-  // or req.headers.cookie (see http://stackoverflow.com/a/16395220/151312)
+wss.on("connection", function(ws) {
+  console.log("websocket connection open")
 
-  ws.on('message', function incoming(message) {
-    console.log('received: %s', message);
-  });
-
-  wss.send('connected');
-  console.log('connected')
-});
+  ws.on("close", function() {
+    console.log("websocket connection close")
+  })
+})
 
 app.get('/', function(req, res, next){
   res.send("done");
@@ -34,5 +34,3 @@ app.post('/', function(req, res, next){
   wss.send(req.body.msg);
   res.send("done");
 });
-
-app.listen(process.env.PORT || 5000)

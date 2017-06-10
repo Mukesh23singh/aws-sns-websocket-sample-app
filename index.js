@@ -22,8 +22,6 @@ wss.on('connections', function connection(ws, req) {
     console.log('received: %s', message);
   });
 
-  wss = ws;
-
   wss.send('connected');
   console.log('connected')
 });

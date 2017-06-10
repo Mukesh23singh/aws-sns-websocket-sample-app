@@ -29,7 +29,7 @@ wss.on('connections', function connection(ws, req) {
 });
 
 app.get('/', function(req, res, next){
-  return next();
+  res.send("done");
 });
 
 app.post('/', function(req, res, next){

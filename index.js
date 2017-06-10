@@ -20,7 +20,7 @@ console.log("websocket server created")
 
 wss.on("connection", function(ws) {
   console.log("websocket connection open")
-
+  wss = ws;
   ws.on("close", function() {
     console.log("websocket connection close")
   })

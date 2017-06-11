@@ -33,11 +33,12 @@ app.get('/', function(req, res, next){
 });
 
 app.post('/', function(req, res, next){
-  snsHandler(req);
+  console.log(req);
+  snsHandler(req.Body);
   res.send("done");
 });
 
-function snsHandler(req){
+function snsHandler(message){
   validator.validate(message, function (err, message) {
     if (err) {
         console.error(err);

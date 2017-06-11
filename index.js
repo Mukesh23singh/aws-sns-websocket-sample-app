@@ -45,12 +45,12 @@ app.get('/', function(req, res, next){
 });
 
 app.post('/', function(req, res, next){
-  console.log(CircularJSON.stringify(req));
-  snsHandler(req.body);
+  snsHandler(req.text);
   res.send("done");
 });
 
 function snsHandler(message){
+  message = JSON.parse(message);
   console.log(message);
   validator.validate(message, function (err, message) {
     if (err) {

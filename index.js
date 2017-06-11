@@ -9,6 +9,17 @@ var port = process.env.PORT || 5000;
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
+app.use(function(req, res, next){
+  if (req.is('text/*')) {
+    req.text = '';
+    req.setEncoding('utf8');
+    req.on('data', function(chunk){ req.text += chunk });
+    req.on('end', next);
+  } else {
+    next();
+  }
+});
+
 app.use(express.static('public'));
 
 var server = http.createServer(app);

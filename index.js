@@ -2,6 +2,8 @@ var WebSocketServer = require("ws").Server
 var http = require("http")
 var express = require("express")
 var app = express()
+var MessageValidator = require('sns-validator'),
+var validator = new MessageValidator();
 var port = process.env.PORT || 5000
 
 var bodyParser = require('body-parser');
@@ -31,6 +33,26 @@ app.get('/', function(req, res, next){
 });
 
 app.post('/', function(req, res, next){
-  wss.send(req.body.msg);
+  snsHandler(req);
   res.send("done");
 });
+
+function snsHandler(req){
+  validator.validate(message, function (err, message) {
+    if (err) {
+        console.error(err);
+        return;
+    }
+
+    if (message['Type'] === 'SubscriptionConfirmation') {
+        https.get(message['SubscribeURL'], function (res) {
+          console.log('SNS Subscription Confirm');
+        });
+    }
+
+    if (message['Type'] === 'Notification') {
+      wss.send(message['Message']);
+      console.log(message['MessageId'] + ': ' + message['Message']);
+    }
+  });
+}

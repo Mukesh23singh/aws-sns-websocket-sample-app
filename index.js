@@ -3,6 +3,7 @@ var http = require("http");
 var express = require("express");
 var app = express();
 var MessageValidator = require('sns-validator');
+var CircularJSON = require('circular-json');
 var validator = new MessageValidator();
 var port = process.env.PORT || 5000;
 
@@ -33,7 +34,7 @@ app.get('/', function(req, res, next){
 });
 
 app.post('/', function(req, res, next){
-  console.log(JSON.stringify(req));
+  console.log(CircularJSON.stringify(req));
   snsHandler(req.body);
   res.send("done");
 });

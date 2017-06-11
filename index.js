@@ -22,13 +22,13 @@ app.use(function(req, res, next){
 
 app.use(express.static('public'));
 
-var server = http.createServer(app);
+var server = https.createServer(app);
 server.listen(port);
 app.use(function (req, res, next) {
   console.log('middleware');
   return next();
 });
-console.log("http server listening on %d", port);
+console.log("https server listening on %d", port);
 var wss = new WebSocketServer({server: server})
 console.log("websocket server created")
 

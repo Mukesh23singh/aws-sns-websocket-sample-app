@@ -1,17 +1,17 @@
-var WebSocketServer = require("ws").Server
-var http = require("http")
-var express = require("express")
-var app = express()
-var MessageValidator = require('sns-validator'),
+var WebSocketServer = require("ws").Server;
+var http = require("http");
+var express = require("express");
+var app = express();
+var MessageValidator = require('sns-validator');
 var validator = new MessageValidator();
-var port = process.env.PORT || 5000
+var port = process.env.PORT || 5000;
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
-var server = http.createServer(app)
-server.listen(port)
+var server = http.createServer(app);
+server.listen(port);
 app.use(function (req, res, next) {
   console.log('middleware');
   return next();

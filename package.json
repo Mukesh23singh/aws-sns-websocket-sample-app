@@ -17,9 +17,6 @@
     "sns-validator": "^0.3.0",
     "ws": "^0.4.32"
   },
-  "engines": {
-    "node": "0.10.x"
-  },
   "scripts": {
     "start": "node index.js"
   }

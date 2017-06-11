@@ -36,6 +36,8 @@ app.post('/', function(req, res, next){
   console.log(req);
   snsHandler(req.body);
   res.send("done");
+
+  
 });
 
 function snsHandler(message){

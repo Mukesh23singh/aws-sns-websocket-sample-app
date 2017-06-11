@@ -1,5 +1,5 @@
 var WebSocketServer = require("ws").Server;
-var https = require('https');
+var http = require('http');
 var express = require("express");
 var app = express();
 var MessageValidator = require('sns-validator');
@@ -22,13 +22,13 @@ app.use(function(req, res, next){
 
 app.use(express.static('public'));
 
-var server = https.createServer(app);
+var server = http.createServer(app);
 server.listen(port);
 app.use(function (req, res, next) {
   console.log('middleware');
   return next();
 });
-console.log("https server listening on %d", port);
+console.log("http server listening on %d", port);
 var wss = new WebSocketServer({server: server})
 console.log("websocket server created")
 
@@ -59,7 +59,7 @@ function snsHandler(message){
     }
 
     if (message['Type'] === 'SubscriptionConfirmation') {
-        https.get(message['SubscribeURL'], function (res) {
+        http.get(message['SubscribeURL'], function (res) {
           console.log('SNS Subscription Confirm');
         });
     }

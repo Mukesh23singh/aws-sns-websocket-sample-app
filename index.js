@@ -36,11 +36,10 @@ app.post('/', function(req, res, next){
   console.log(req);
   snsHandler(req.body);
   res.send("done");
-
-  
 });
 
 function snsHandler(message){
+  console.log(message);
   validator.validate(message, function (err, message) {
     if (err) {
         console.error(err);

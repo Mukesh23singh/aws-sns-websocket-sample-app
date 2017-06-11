@@ -33,7 +33,7 @@ app.get('/', function(req, res, next){
 });
 
 app.post('/', function(req, res, next){
-  console.log(req);
+  console.log(JSON.stringify(req));
   snsHandler(req.body);
   res.send("done");
 });

@@ -1,5 +1,6 @@
 var WebSocketServer = require("ws").Server;
 var http = require('http');
+var https = require('https');
 var express = require("express");
 var app = express();
 var MessageValidator = require('sns-validator');
@@ -59,7 +60,7 @@ function snsHandler(message){
     }
 
     if (message['Type'] === 'SubscriptionConfirmation') {
-        http.get(message['SubscribeURL'], function (res) {
+        https.get(message['SubscribeURL'], function (res) {
           console.log('SNS Subscription Confirm');
         });
     }

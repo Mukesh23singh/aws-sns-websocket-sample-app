@@ -1,6 +1,5 @@
-# Node.js Websocket Test
+# aws-sns-websocket-sample-app and Node.js Websocket Test
 
-A tiny demo using the [einaros/ws](http://einaros.github.io/ws/) WebSockets implementation.
 
 # Running Locally
 
